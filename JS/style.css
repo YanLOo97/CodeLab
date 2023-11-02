@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Fira Code";
+}
+header {
+  text-align: center;
+}
+body {
+  background-color: rgb(101, 101, 227);
+  color: whitesmoke;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: rgb(77, 10, 139);
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+input,
+select,
+button {
+  padding: 5px;
+  margin: 5px 5px;
+}
+
+.result {
+  text-align: center;
+  background-color: black;
+  padding: 10px;
+  font-size: 2rem;
+}
