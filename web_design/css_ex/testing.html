@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            color: blue;
+        }
+
+        #Simp {
+            color: black;
+        }
+
+        #simp_id {
+            color: red;
+        }
+
+        .simp_class {
+            color: green;
+        }
+
+        #Combi {
+            color: black;
+        }
+
+        div~p {
+            color: blueviolet;
+        }
+
+        a[target = "_blank"],[target = "_parent"] {
+            background-color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1 style="color: red;">Inline CSS</h1>
+    <h2>Internal CSS</h2>
+    <h3>External CSS</h3>
+    <hr>
+    <h2 id="Simp"><b>Simple selector by tag</b></h2>
+    <h3 id="simp_id"><b>Simple selector by id</b></h3>
+    <h3 class="simp_class"><b>Simple selector by class</b></h3>
+    <hr>
+    <h2 id="Combi"><b>Combinator selector</b></h2>
+    <div>
+        <p>This is a child paragraph.</p>
+        <p>This is a child paragraph.</p>
+        <section>
+            <p>This is descendant paragraph.</p>
+        </section>
+    </div>
+    <p>This is an adjacent paragraph.</p>
+    <p>This is the last paragraph.</p>
+    <hr>
+    <h2 id="Attrib">Attribute selector</h2>
+    <a href="https://www.instagram.com" target="_blank">Instagram.com</a>
+    <a href="https://www.youtube.com" target="_top">Youtube.com</a>
+    <a href="https://www.facebook.com" target="_parent">Facebook.com</a>
+    <hr>
+
+    <h2>Display</h2>
+    
+</body>
+
+</html>
