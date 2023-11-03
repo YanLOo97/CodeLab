@@ -18,7 +18,11 @@
                 Result
             </div>
             <input type="number" id="num1" placeholder="Type number 1" required>
+            <span class="error" id="numOneError">Enter number 1</span>
+
             <input type="number" id="num2" placeholder="Type number 2" required>
+            <span class="error" id="numTwoError">Enter number 2</span>
+
             <select id="operator">
                 <option value="empty">Choose operator</option>
                 <option value="add">+</option>
@@ -26,6 +30,7 @@
                 <option value="multiply">*</option>
                 <option value="divide">/</option>
             </select>
+            <span class="error" id="operatorError">Choose one operator</span>
 
             <button type="button" id="btnCalculate">Calculate</button>
             <button type="button" id="btnClear">Clear</button>

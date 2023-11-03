@@ -21,7 +21,7 @@ main {
 
 .container {
   background-color: rgb(77, 10, 139);
-  width: 40%;
+  width: 30%;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -40,4 +40,9 @@ button {
   background-color: black;
   padding: 10px;
   font-size: 2rem;
+}
+
+.error {
+  color: red;
+  margin: 0 10px;
 }

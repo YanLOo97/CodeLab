@@ -1,36 +1,96 @@
-btnClear.addEventListener("click", function () {
-  console.log("You clicked Clear button");
-});
+numOneError.style.display = "none";
+numTwoError.style.display = "none";
+operatorError.style.display = "none";
+let numOneErrorStatus = false;
+let numTwoErrorStatus = false;
+let operatorErrorStatus = false;
 
+// Calculation
 btnCalculate.addEventListener("click", function () {
-  let Num1 = parseFloat(document.getElementById("num1").value);
-  let Num2 = parseFloat(document.getElementById("num2").value);
-  let Operator = document.getElementById("operator").value;
+  let num1 = document.getElementById("num1");
+  let num2 = document.getElementById("num2");
+  let operator = document.getElementById("operator").value;
   let resultElement = document.getElementsByClassName("result")[0];
   let finalResult;
 
-  switch (Operator) {
-    case "add":
-      console.log(Num1 + Num2);
-      finalResult = Num1 + Num2;
-      break;
-    case "minus":
-      console.log(Num1 - Num2);
-      finalResult = Num1 - Num2;
-      break;
-    case "multiply":
-      console.log(Num1 * Num2);
-      finalResult = Num1 * Num2;
-      break;
-    case "divide":
-      console.log(Num1 / Num2);
-      finalResult = Num1 / Num2;
-      break;
+  checkValidation(num1, num2, operator);
 
-    default:
-      console.log("Operation error");
-      break;
+  if (!numOneErrorStatus && !numTwoErrorStatus && !operatorErrorStatus) {
+    console.log(numOneErrorStatus);
+    console.log(numTwoErrorStatus);
+    console.log(operatorErrorStatus);
+    //change num1 num2 value to decimal number
+    num1 = parseFloat(num1.value);
+    num2 = parseFloat(num2.value);
+
+    switch (operator) {
+      case "add":
+        finalResult = num1 + num2;
+        break;
+      case "minus":
+        finalResult = num1 - num2;
+        break;
+      case "multiply":
+        finalResult = num1 * num2;
+        break;
+      case "divide":
+        finalResult = num1 / num2;
+        break;
+      default:
+        console.log("Operation error");
+        break;
+    }
+
+    resultElement.innerHTML = finalResult;
+  }
+});
+
+// clear input fields
+btnClear.addEventListener("click", function () {
+  let num1 = document.getElementById("num1");
+  let num2 = document.getElementById("num2");
+  let operator = document.getElementById("operator");
+  let resultElement = document.getElementsByClassName("result")[0];
+
+  num1.value = "";
+  num2.value = "";
+  operator.selectedIndex = 0;
+  resultElement.innerHTML = "Result";
+});
+
+// Validation
+function checkValidation(num1, num2, operator) {
+  if (
+    num1.value == "" ||
+    isNaN(parseFloat(num1.value)) ||
+    num1.value == undefined ||
+    num1.value == null
+  ) {
+    numOneError.style.display = "block";
+    numOneErrorStatus = true;
+  } else {
+    numOneError.style.display = "none";
+    numOneErrorStatus = false;
   }
 
-  resultElement.innerHTML = finalResult;
-});
+  if (
+    num2.value == "" ||
+    isNaN(parseFloat(num2.value)) ||
+    num2.value == undefined ||
+    num2.value == null
+  ) {
+    numTwoError.style.display = "block";
+    numTwoErrorStatus = true;
+  } else {
+    numTwoError.style.display = "none";
+    numTwoErrorStatus = false;
+  }
+
+  if (operator == "empty") {
+    operatorError.style.display = "block";
+    operatorErrorStatus = true;
+  } else {
+    operatorError.style.display = "none";
+    operatorErrorStatus = false;
+  }
+}
