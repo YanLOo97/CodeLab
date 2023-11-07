@@ -7,7 +7,7 @@
 }
 header {
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px auto;
 }
 body {
   background-color: rgb(101, 101, 227);
