@@ -32,6 +32,15 @@
             gap: 1rem;
             display: none;
         }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: black;
+            border-radius: 50%;
+            margin-top: 10px;
+            position: relative;
+        }
     </style>
 </head>
 
@@ -47,7 +56,13 @@
         <img src="../web_design/image/mv9.jpg">
         <img src="../web_design/image/mv8.jpg">
     </div>
-
+    <div class="animation-container">
+        <button class="animationBtn">Animation</button>
+        <button class="stopBtn">Stop</button>
+        <button class="chainingBtn">Chaining</button>
+        <div class="box"></div>
+        <h1 id="hello">Hello there</h1>
+    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
@@ -70,21 +85,43 @@
     //     );
     // }
     // );
+
     // show,hide,toggle functions
     $(document).ready(() => {
         $("#showBtn").click(function () {
-            $("#images").fadeIn(500);
+            $("#images").fadeIn(300);
         });
 
         $("#hideBtn").click(function () {
-            $("#images").fadeOut(500);
+            $("#images").fadeOut(300);
         });
 
         $("#toggleBtn").click(function () {
-            $("#images").fadeToggle(500);
-        })
-    }
-    )
+            $("#images").fadeToggle(300);
+        });
+
+        // animation button
+        $(".animationBtn").click(function () {
+            $(".box").animate({
+                left: "300px",
+                top: "560px",
+                width: "-=100px",
+                height: "-=100px"
+            }, 5000, function () {      //callback function
+                $("#images").fadeIn(300);
+            });
+        });
+
+        //stop button
+        $(".stopBtn").click(function () {
+            $(".box").stop();
+        });
+
+        //chaining button
+        $(".chainingBtn").click(function () {
+            $("#hello").fadeOut(2000).fadeIn(2000);
+        });
+    });
 
 
 </script>
