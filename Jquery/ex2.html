@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jquery Get/Set</title>
+    <style>
+        .bg-dark {
+            background-color: rgb(35, 35, 37);
+        }
+    </style>
 </head>
 
 <body>
@@ -15,7 +20,7 @@
         <option value="Banana">B</option>
         <option value="Coconut">C</option>
     </select>
-
+    <button>Light/Dark</button>
     <ul id="list">
         <li>Apple</li>
         <li>Orange</li>
@@ -24,21 +29,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("h1").html("GET SET testing with .html")          //Set
-        console.log($("h1").html())                         //Get
+        $("h1").html("GET SET testing with .html")          //Set html
+        console.log($("h1").html())                         //Get html
 
-        $("h1").text("GET SET testing with .text")          //Set
-        console.log($("h1").text())                         //Get
+        $("h1").text("GET SET testing with .text")          //Set text
+        console.log($("h1").text())                         //Get text
 
-        $("#Fruits").val("Banana");                         //Set
-        console.log($("#Fruits").val());                    //Get
+        $("#Fruits").val("Banana");                         //Set val
+        console.log($("#Fruits").val());                    //Get val
 
-        console.log($("h1").attr("title"));                 //Get
-        $("h1").attr("title", "This is update title");      //Set
-        console.log($("h1").attr("title"));                 //Get
+        console.log($("h1").attr("title"));                 //Get attr
+        $("h1").attr("title", "This is update title");      //Set attr
+        console.log($("h1").attr("title"));                 //Get attr
 
-        $("#userName").val("Yan Lin Oo");                   //Set
-        console.log($("#userName").val());                  //Get
+        $("#userName").val("Yan Lin Oo");                   //Set val
+        console.log($("#userName").val());                  //Get val
 
         $("#list").append(`<li>append</li>`);               //append
         $("#list").prepend(`<li>prepend</li>`);             //prepend
@@ -47,6 +52,11 @@
 
         // $("#list").remove();                                //remove selected element and child elements
         // $("#list").empty();                                 //remove child elements
+
+        //toggleClass
+        $("button").click(function () {
+            $("body").toggleClass("bg-dark"); // can use css, addClass, removeClass too
+        })
     })
 </script>
 
