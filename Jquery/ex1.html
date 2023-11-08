@@ -51,13 +51,26 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-    document.getElementById("heading").innerHTML = "Testing Jquery"; //normal method
-    $("#heading").html("Testing Jquery");    //jquery method
+    // document.getElementById("heading").innerHTML = "Testing Jquery"; //normal method
+    // $("#heading").html("Testing Jquery");    //jquery method
 
-    //normal method
-    document.querySelector("#heading").addEventListener("click", function () {
-        this.style.display = "none";
-    });
+    // //normal method
+    // document.querySelector("#heading").addEventListener("click", function () {
+    //     this.style.display = "none";
+    // });
+        // jquery method
+        $("#heading").click(function () {
+            $(this).hide(1000); //hide in milliseconds
+        });
+
+        $(document).ready(() => {    //will load script after document finish loading
+            $("#heading").click(function () {
+                $(this).hide(1000);
+            }
+            );
+        }
+        );
+
 
 
 </script>
