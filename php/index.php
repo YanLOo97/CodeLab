@@ -91,7 +91,15 @@
     <hr>
 
     <?php
-        echo ucwords("This is php");
+
+    define("NAME","yanlinoo");
+    $name = "Yan lin Oo";
+    function showMsg(){
+        global $name;
+        echo $name;
+    }
+    showMsg();
+
     ?>
 </body>
 </html>
