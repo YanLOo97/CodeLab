@@ -100,6 +100,15 @@
     }
     showMsg();
 
+    // Encrypt Decrypt
+    $encName = md5($name);
+    $secName = sha1($name);
+
+    $password = "123456";
+    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+    echo "<br>" . $hashPassword;
+    echo "<br>";
+    echo password_verify("123456", $hashPassword)? "same password" : "wrong password";
     ?>
 </body>
 </html>
