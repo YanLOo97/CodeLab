@@ -109,6 +109,16 @@
     echo "<br>" . $hashPassword;
     echo "<br>";
     echo password_verify("123456", $hashPassword)? "same password" : "wrong password";
+
+    //date time
+    date_default_timezone_set("Asia/Yangon");
+    echo date("Y-m-d h:i:a")."<br>";
+
+    $currentDate = date_create(date("Y-m-d"));
+    date_add($currentDate, date_interval_create_from_date_string("5 days"));
+    echo date_format($currentDate, "Y-m-d")."<br>";
+    
+    echo cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
     ?>
 </body>
 </html>
