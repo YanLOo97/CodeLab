@@ -113,12 +113,17 @@
     //date time
     date_default_timezone_set("Asia/Yangon");
     echo date("Y-m-d h:i:a")."<br>";
-
+    
     $currentDate = date_create(date("Y-m-d"));
     date_add($currentDate, date_interval_create_from_date_string("5 days"));
     echo date_format($currentDate, "Y-m-d")."<br>";
-    
     echo cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
+    
+    //include | require example usage database connection
+    include("home.php"); //continues the script execution even if the included file is not found or there's an error while including it.
+    include_once("home.php");
+    require("home.php"); //stops the script execution if the file is not found or there's an error while including it.
+    require_once("home.php");
     ?>
 </body>
 </html>
