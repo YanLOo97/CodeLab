@@ -143,6 +143,19 @@
         footer.php
     */
 ?>
-
+    <!-- Request/Response  -->
+    <!-- GET method show data on URL/ POST method -->
+    <h3>Client page</h3>
+    <form action="./server.php" method = "POST" enctype="multipart/form-data"><!-- for input file -->
+        Name<input type="text" name="Name">
+        Choose image<input type="file" name="image" id="">
+        <input type="submit" value="Send">
+    </form>
+    <?php
+    echo "<pre>";
+    var_dump($_REQUEST);
+    var_dump($_GET);//  can use $_POST
+    var_dump($_FILES);//  will show file data
+    ?>
 </body>
 </html>
