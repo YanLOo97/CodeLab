@@ -90,59 +90,59 @@
 
     <hr>
 
-<?php
+    <?php
 
-    define("NAME","yanlinoo");
-    $name = "Yan lin Oo";
-    function showMsg(){
-        global $name;
-        echo $name;
-    }
-    showMsg();
+        define("NAME","yanlinoo");
+        $name = "Yan lin Oo";
+        function showMsg(){
+            global $name;
+            echo $name;
+        }
+        showMsg();
 
-    // Encrypt Decrypt
-    $encName = md5($name);
-    $secName = sha1($name);
+        // Encrypt Decrypt
+        $encName = md5($name);
+        $secName = sha1($name);
 
-    $password = "123456";
-    $hashPassword = password_hash($password, PASSWORD_DEFAULT);
-    echo "<br>" . $hashPassword;
-    echo "<br>";
-    echo password_verify("123456", $hashPassword)? "same password" : "wrong password";
+        $password = "123456";
+        $hashPassword = password_hash($password, PASSWORD_DEFAULT);
+        echo "<br>" . $hashPassword;
+        echo "<br>";
+        echo password_verify("123456", $hashPassword)? "same password" : "wrong password";
 
-    //date time
-    date_default_timezone_set("Asia/Yangon");
-    echo date("Y-m-d h:i:a")."<br>";
+        //date time
+        date_default_timezone_set("Asia/Yangon");
+        echo date("Y-m-d h:i:a")."<br>";
 
-    $currentDate = date_create(date("Y-m-d"));
-    date_add($currentDate, date_interval_create_from_date_string("5 days"));
-    echo date_format($currentDate, "Y-m-d")."<br>";
-    echo cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
-    
-    //include | require example usage database connection
-    include("home.php"); //continues the script execution even if the included file is not found or there's an error while including it.
-    include_once("home.php");
-    require("home.php"); //stops the script execution if the file is not found or there's an error while including it.
-    require_once("home.php");
-    
-    /*php file structure
-    asset
-        css
-        js
-        img
-    view
-        index.php
-        home.php
-    controller
-        index.php
-        home.php
-    helper
-        base.php
-    template
-        header.php
-        footer.php
-    */
-?>
+        $currentDate = date_create(date("Y-m-d"));
+        date_add($currentDate, date_interval_create_from_date_string("5 days"));
+        echo date_format($currentDate, "Y-m-d")."<br>";
+        echo cal_days_in_month(CAL_GREGORIAN, date("m"), date("Y"));
+        
+        //include | require example usage database connection
+        include("home.php"); //continues the script execution even if the included file is not found or there's an error while including it.
+        include_once("home.php");
+        require("home.php"); //stops the script execution if the file is not found or there's an error while including it.
+        require_once("home.php");
+        
+        /*php file structure
+        asset
+            css
+            js
+            img
+        view
+            index.php
+            home.php
+        controller
+            index.php
+            home.php
+        helper
+            base.php
+        template
+            header.php
+            footer.php
+        */
+    ?>
     <!-- Request/Response  -->
     <!-- GET method show data on URL/ POST method -->
     <h3>Client page</h3>
@@ -156,6 +156,25 @@
     var_dump($_REQUEST);
     var_dump($_GET);//  can use $_POST
     var_dump($_FILES);//  will show file data
+    ?>
+
+<!-- File upload -->
+    <h3>File upload</h3>
+    <form method = "POST" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit" value="Save" name="storeFile">
+    </form>
+
+    <?php
+        if(isset($_POST['storeFile'])){
+            $img = $_FILES['image'];
+            $name = $img['name'];
+            $tmp_name = $img['tmp_name'];
+
+            $target_dir = "uploads/" . $name;
+            move_uploaded_file($tmp_name, $target_dir);
+            echo "File uploaded";
+        }
     ?>
 </body>
 </html>
