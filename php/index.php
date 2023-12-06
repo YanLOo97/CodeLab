@@ -206,6 +206,32 @@ outputmessage(10, 14);
     echo "<br>";
     echo $_COOKIE['userName'];
     ?>
+
+    <!-- password hash -->
+    <form method="post">
+        Email<input type="email" name="userEmail"><br>
+        Password<input type="password" name="userPassword"><br>
+        <!-- <input type="submit" value="log in" name="loginBtn"> -->
+        <button type="submit" name="loginBtn">Login</button>
+    </form>
+
+    <?php
+        $name = "yanlinoo@mail.com";
+        $password = '$2y$10$bJzFQFMhkj.K.JOpTrRjOOdvb6QD4NplH5XDm5jIfl2JFh4l7nDGe';
+        // password_hash($password, PASSWORD_BCRYPT);
+
+        if(isset($_POST['loginBtn'])){
+            $userEmail = $_POST['userEmail'];
+            $userPassword = $_POST['userPassword'];
+
+            if($userEmail == $name && password_verify($userPassword,$password)){
+                echo "login success";
+            }
+            else{
+                echo "login fail";
+            }
+        }
+    ?>
 </body>
 
 </html>
