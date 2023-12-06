@@ -194,6 +194,18 @@ outputmessage(10, 14);
         echo "Welcome From " . $_SESSION['userName'];
         session_destroy();
     ?>
+
+    <!-- cookie -->
+    page 1 cookie create
+    <?php
+    setcookie("userName", "YanLinOo", time() + 10);
+    echo "Cookie created successfully";
+    ?>
+    page 2
+    <?php
+    echo "<br>";
+    echo $_COOKIE['userName'];
+    ?>
 </body>
 
 </html>
