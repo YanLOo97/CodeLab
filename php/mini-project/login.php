@@ -38,22 +38,37 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Log in</h3>
-                        <form action="">
+                        <form method="POST">
                             <div class="mb-3">
                                 <label for="">Email</label>
-                                <input type="email" class="form-control">
+                                <input type="email" name="email" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="">Password</label>
-                                <input type="password" class="form-control">
+                                <input type="password" name="password" class="form-control">
                             </div>
-                            <button type="submit" class="btn bg-dark text-white">Login</button>
+                            <button type="submit" name="login" class="btn bg-dark text-white">Login</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</body>
+
+    <?php
+    session_start();
+    if (isset($_POST['login'])) {
+        $userEmail = $_POST['email'];
+        $userPassword = $_POST['password'];
+
+        if ($userEmail == $_SESSION['email'] && password_verify($userPassword, $_SESSION['password'])) {
+            echo "Login successful";
+        } else {
+            echo "Invalid email or password";
+        }
+    } else {
+        echo "All fields are required!";
+    }
+    ?>
 
 </html>

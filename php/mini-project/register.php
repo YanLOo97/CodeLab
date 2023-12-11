@@ -87,9 +87,9 @@
         }
 
         if ($upperStatus && $lowerStatus && $numberStatus && $specialStatus) {
-            echo true;
+            return true;
         } else {
-            echo false;
+            return false;
         }
     }
 
@@ -102,7 +102,8 @@
         if ($name != "" && $email != "" && $password != "" && $confirmPassword != "") {
             if (strlen($password) >= 6) {
                 if ($password == $confirmPassword) {
-                    if (checkStrongPassword($password)) {
+                    $status = checkStrongPassword($password);
+                    if ($status) {
                         $_SESSION['email'] = $email;
                         $_SESSION['password'] = password_hash($password, PASSWORD_BCRYPT);
                         echo "Register success!";
