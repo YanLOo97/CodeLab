@@ -41,7 +41,7 @@
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="">Name</label>
-                                <input type="email" name="name" class="form-control">
+                                <input type="text" name="name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="">Email</label>
@@ -65,6 +65,34 @@
 
     <?php
     session_start();
+
+    function checkStrongPassword($password)
+    {
+        $upperStatus = false;
+        $lowerStatus = false;
+        $numberStatus = false;
+        $specialStatus = false;
+
+        if (preg_match('/[A-Z]/', $password)) {
+            $upperStatus = true;
+        }
+        if (preg_match('/[a-z]/', $password)) {
+            $lowerStatus = true;
+        }
+        if (preg_match('/[0-9]/', $password)) {
+            $numberStatus = true;
+        }
+        if (preg_match('/[^A-Za-z0-9]/', $password)) {
+            $specialStatus = true;
+        }
+
+        if ($upperStatus && $lowerStatus && $numberStatus && $specialStatus) {
+            echo true;
+        } else {
+            echo false;
+        }
+    }
+
     if (isset($_POST['register'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -74,10 +102,13 @@
         if ($name != "" && $email != "" && $password != "" && $confirmPassword != "") {
             if (strlen($password) >= 6) {
                 if ($password == $confirmPassword) {
-                    $_SESSION['email'] = $email;
-                    $_SESSION['password'] = password_hash($password, PASSWORD_BCRYPT);
-
-                    echo "Register success!";
+                    if (checkStrongPassword($password)) {
+                        $_SESSION['email'] = $email;
+                        $_SESSION['password'] = password_hash($password, PASSWORD_BCRYPT);
+                        echo "Register success!";
+                    } else {
+                        echo "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.";
+                    }
                 } else {
                     echo "Passwords do not match!";
                 }
