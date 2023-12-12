@@ -184,15 +184,15 @@ outputmessage(10, 14);
     <!-- Session -->
     page 1
     <?php
-        session_start();
-        $_SESSION['userName'] = "Yan Lin Oo Session";
-        echo "Session success"
+    session_start();
+    $_SESSION['userName'] = "Yan Lin Oo Session";
+    echo "Session success"
     ?>
     page 2
     <?php
-        session_start();
-        echo "Welcome From " . $_SESSION['userName'];
-        session_destroy();
+    session_start();
+    echo "Welcome From " . $_SESSION['userName'];
+    session_destroy();
     ?>
 
     <!-- cookie -->
@@ -216,21 +216,31 @@ outputmessage(10, 14);
     </form>
 
     <?php
-        $name = "yanlinoo@mail.com";
-        $password = '$2y$10$bJzFQFMhkj.K.JOpTrRjOOdvb6QD4NplH5XDm5jIfl2JFh4l7nDGe';
-        // password_hash($password, PASSWORD_BCRYPT);
+    $name = "yanlinoo@mail.com";
+    $password = '$2y$10$bJzFQFMhkj.K.JOpTrRjOOdvb6QD4NplH5XDm5jIfl2JFh4l7nDGe';
+    // password_hash($password, PASSWORD_BCRYPT);
 
-        if(isset($_POST['loginBtn'])){
-            $userEmail = $_POST['userEmail'];
-            $userPassword = $_POST['userPassword'];
+    if (isset($_POST['loginBtn'])) {
+        $userEmail = $_POST['userEmail'];
+        $userPassword = $_POST['userPassword'];
 
-            if($userEmail == $name && password_verify($userPassword,$password)){
-                echo "login success";
-            }
-            else{
-                echo "login fail";
-            }
+        if ($userEmail == $name && password_verify($userPassword, $password)) {
+            echo "login success";
+        } else {
+            echo "login fail";
         }
+    }
+    ?>
+
+    <!-- database connection -->
+    <?php
+    $connection = mysqli_connect('localhost', 'root', '', 'test');
+
+    if (!$connection) {
+        die('Connection error: ' . mysqli_connect_error());
+    } else {
+        echo 'Connection successful';
+    }
     ?>
 </body>
 
