@@ -242,6 +242,31 @@ outputmessage(10, 14);
         echo 'Connection successful';
     }
     ?>
+
+    <!-- To do list -->
+    <form method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="taskName" id="name" placeholder="Enter your task...">
+            <button name="addBtn">Add</button>
+        </div>
+    </form>
+
+    <?php
+    require_once("./db_connection.php");
+
+    if (isset($_POST['addBtn'])) {
+        $taskName = $_POST['taskName'];
+
+        $sql = "INSERT INTO work (name) VALUES ('$taskName')";
+
+        if (mysqli_query($conn, $sql)) {
+            echo "Task added successfully";
+        } else {
+            echo "Error adding task: " . mysqli_error($conn);
+        }
+    }
+    ?>
 </body>
 
 </html>
