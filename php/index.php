@@ -258,12 +258,17 @@ outputmessage(10, 14);
     if (isset($_POST['addBtn'])) {
         $taskName = $_POST['taskName'];
 
-        $sql = "INSERT INTO work (name) VALUES ('$taskName')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo "Task added successfully";
+        if (empty(trim($taskName))) {
+            echo "Please enter a task name";
+            return;
         } else {
-            echo "Error adding task: " . mysqli_error($conn);
+            $sql = "INSERT INTO work (name) VALUES ('$taskName')";
+
+            if (mysqli_query($conn, $sql)) {
+                echo "Task added successfully";
+            } else {
+                echo "Error adding task: " . mysqli_error($conn);
+            }
         }
     }
     ?>
