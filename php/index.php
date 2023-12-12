@@ -251,7 +251,7 @@ outputmessage(10, 14);
             <button name="addBtn">Add</button>
         </div>
     </form>
-
+    <!-- create task -->
     <?php
     require_once("./db_connection.php");
 
@@ -265,11 +265,64 @@ outputmessage(10, 14);
             $sql = "INSERT INTO work (name) VALUES ('$taskName')";
 
             if (mysqli_query($conn, $sql)) {
-                echo "Task added successfully";
+                header("Location: ./read.php");
             } else {
                 echo "Error adding task: " . mysqli_error($conn);
             }
         }
+    }
+    ?>
+    <!-- read task -->
+    <h1>Tasks List</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Created at</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            require_once "db_connection.php";
+
+            $sql = "SELECT * FROM work";
+            $query = mysqli_query($conn, $sql);
+            $totalrow = mysqli_num_rows($query);
+
+            while ($row = mysqli_fetch_assoc($query)) {
+
+                $time = date('Y.M.d|g:i:a', strtotime($row['created_at']));
+
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $time . "</td>";
+                echo "<td>
+                        <a href='update.php'>Update</a>|
+                        <a href='./delete.php?id={$row['id']}'>Delete</a>
+                    </td>";
+                echo "</tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+    <a href="./create.php">Create new task</a>
+
+    <!-- delete task -->
+    <?php
+    require_once('db_connection.php');
+    $id = $_GET['id'];
+
+    $sql = "DELETE FROM work WHERE id = '$id'";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        header("Location: read.php");
+    } else {
+        echo "Error deleting record: " . mysqli_error($conn);
     }
     ?>
 </body>
